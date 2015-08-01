@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <title>@ViewBag.Title</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="content-language" content="en-us" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/content/bootstrap.min.css" />
+    <link rel="stylesheet" href="/content/bootstrap-theme.min.css" />    
+</head>
+<body>
+    <div class="navbar navbar-inverse" role="navigation">
+        <div class="navbar-header">
+            <ul class="nav navbar-nav">
+                <li><a href="@Url.Action(nameof(DefaultController.Index))">Home</a></li>
+                <li><a href="@Url.Action(nameof(DefaultController.TitleList))">Titles</a></li>
+                <li><a href="@Url.Action(nameof(DefaultController.ArtistList))">Artists</a></li>
+                <li><a href="@Url.Action(nameof(DefaultController.CharacterList))">Characters</a></li>                
+            </ul>
+        </div>
+    </div>
+    <div class="container">
+        <h1>@ViewBag.Title</h1>
+        @RenderBody()
+    </div>
+</body>
+</html>

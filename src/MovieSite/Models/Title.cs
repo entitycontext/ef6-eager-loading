@@ -8,8 +8,8 @@ namespace MovieSite.Models
         public string SortName { get; set; }
         public int Year { get; set; }
         public int RuntimeMinutes { get; set; }
-        public decimal? BudgetMillions { get; set; }
-        public decimal? GrossMillions { get; set; }
+        public decimal BudgetMillions { get; set; }
+        public decimal GrossMillions { get; set; }
 
         public ICollection<TitleGenre> TitleGenres { get; set; } = new List<TitleGenre>();
         public ICollection<TitleArtist> TitleArtists { get; set; } = new List<TitleArtist>();

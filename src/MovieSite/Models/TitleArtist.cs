@@ -6,8 +6,7 @@ namespace MovieSite.Models
     {
         public long TitleId { get; set; }
         public long RoleId { get; set; }
-        public long? ArtistId { get; set; }
-        public long? CharacterId { get; set; }
+        public long ArtistId { get; set; }
 
         public Title Title { get; set; }
         public Role Role { get; set; }

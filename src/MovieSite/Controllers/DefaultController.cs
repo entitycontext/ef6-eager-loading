@@ -17,6 +17,9 @@ namespace MovieSite.Controllers
             if (_repo == null && Request != null)
             {
                 var db = new DatabaseContext();
+#if DEBUG
+                db.Database.Log = o => System.Diagnostics.Debug.Write(o);
+#endif
                 switch (Request["mode"])
                 {
                     case MODE_INCLUDE:

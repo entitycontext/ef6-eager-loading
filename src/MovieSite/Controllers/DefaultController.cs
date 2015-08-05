@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
 
 using MovieSite.Database;
@@ -17,9 +18,7 @@ namespace MovieSite.Controllers
             if (_repo == null && Request != null)
             {
                 var db = new DatabaseContext();
-#if DEBUG
-                db.Database.Log = o => System.Diagnostics.Debug.Write(o);
-#endif
+
                 switch (Request["mode"])
                 {
                     case MODE_INCLUDE:
@@ -46,20 +45,29 @@ namespace MovieSite.Controllers
         public ActionResult ArtistDetails(
             long artistId)
         {
-            var artist = GetRepo()?.GetArtist(artistId);
+            var artist = (Artist)null;
+            using (var repo = GetRepo())
+            {
+                artist = repo.GetArtist(artistId);
+            }
             if (artist == null)
             {
                 throw new Exception($"No artist with id #{artistId} found.");
             }
 
             ViewBag.Title = $"{artist.Name} Artist Details";
-            return View(new Artist());
+            return View(artist);
         }
 
         [Route("artists")]
         public ActionResult ArtistList()
         {
-            var artists = GetRepo()?.GetArtists();
+            var artists = (IEnumerable<Artist>)null;
+            using (var repo = GetRepo())
+            {
+                artists = repo.GetArtists();
+            }
+
             ViewBag.Title = "Artist List";
             return View(artists);
         }
@@ -68,7 +76,11 @@ namespace MovieSite.Controllers
         public ActionResult CharacterDetails(
             long characterId)
         {
-            var character = GetRepo()?.GetCharacter(characterId);
+            var character = (Character)null;
+            using (var repo = GetRepo())
+            {
+                character = repo.GetCharacter(characterId);
+            }
             if (character == null)
             {
                 throw new Exception($"No character with id #{characterId} found.");
@@ -81,7 +93,12 @@ namespace MovieSite.Controllers
         [Route("characters")]
         public ActionResult CharacterList()
         {
-            var characters = GetRepo()?.GetCharacters();
+            var characters = (IEnumerable<Character>)null;
+            using (var repo = GetRepo())
+            {
+                characters = repo.GetCharacters();
+            }
+
             ViewBag.Title = "Character List";
             return View(characters);
         }
@@ -90,7 +107,11 @@ namespace MovieSite.Controllers
         public ActionResult TitleDetails(
             long titleId)
         {
-            var title = GetRepo()?.GetTitle(titleId);
+            var title = (Title)null;
+            using (var repo = GetRepo())
+            {
+                title = repo.GetTitle(titleId);
+            }
             if (title == null)
             {
                 throw new Exception($"No title with id #{titleId} found.");
@@ -103,7 +124,12 @@ namespace MovieSite.Controllers
         [Route("titles")]
         public ActionResult TitleList()
         {
-            var titles = GetRepo()?.GetTitles();
+            var titles = (IEnumerable<Title>)null;
+            using (var repo = GetRepo())
+            {
+                titles = repo.GetTitles();
+            }
+
             ViewBag.Title = "Title List";
             return View(titles);
         }

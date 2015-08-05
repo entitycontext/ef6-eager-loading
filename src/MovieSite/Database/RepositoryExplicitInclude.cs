@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 
@@ -7,42 +6,15 @@ using MovieSite.Models;
 
 namespace MovieSite.Database
 {
-    public class RepositoryExplicitInclude : IRepository
+    public class RepositoryExplicitInclude : RepositoryBase
     {
-        DatabaseContext _db;
-
         public RepositoryExplicitInclude(
-            DatabaseContext db)
+            DatabaseContext db) 
+            : base(db)
         {
-            _db = db;
         }
 
-        protected void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                if (_db != null)
-                {
-                    _db.Dispose();
-                    _db = null;
-                }
-            }
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        public Artist GetArtist(
-            long artistId)
-        {
-            return GetArtists(new[] { artistId })
-                ?.FirstOrDefault();
-        }
-
-        public IEnumerable<Artist> GetArtists(
+        public override IEnumerable<Artist> GetArtists(
             IEnumerable<long> artistIds = null)
         {
             /*
@@ -72,14 +44,7 @@ namespace MovieSite.Database
             return artists;
         }
 
-        public Character GetCharacter(
-            long characterId)
-        {
-            return GetCharacters(new[] { characterId })
-                ?.FirstOrDefault();
-        }
-
-        public IEnumerable<Character> GetCharacters(
+        public override IEnumerable<Character> GetCharacters(
             IEnumerable<long> characterIds = null)
         {
             /*
@@ -109,14 +74,7 @@ namespace MovieSite.Database
             return characters;
         }
 
-        public Title GetTitle(
-            long titleId)
-        {
-            return GetTitles(new[] { titleId })
-                ?.FirstOrDefault();
-        }
-
-        public IEnumerable<Title> GetTitles(
+        public override IEnumerable<Title> GetTitles(
             IEnumerable<long> titleIds = null)
         {
             /*

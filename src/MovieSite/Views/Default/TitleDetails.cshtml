@@ -1,1 +1,103 @@
 ﻿@model Title
+@{ 
+    var title = Model;
+}
+
+<table class="table">
+    <tbody>
+        <tr>
+            <th>Name</th>
+            <td>
+                @Html.ActionLink(
+                    @title.Name,
+                    nameof(DefaultController.TitleDetails),
+                    new { titleId = title.Id, mode = Request["mode"] })
+            </td>
+        </tr>
+        <tr>
+            <th>Year</th>
+            <td>
+                @title.Year
+            </td>
+        </tr>
+        <tr>
+            <th>Runtime</th>
+            <td>
+                @title.RuntimeMinutes minutes
+            </td>
+        </tr>
+        <tr>
+            <th>Budget</th>
+            <td>
+                @title.BudgetMillions.ToString("c") million
+            </td>
+        </tr>
+        <tr>
+            <th>Gross</th>
+            <td>
+                @title.GrossMillions.ToString("c") million
+            </td>
+        </tr>
+        <tr>
+            <th>Genre</th>
+            <td>
+                @foreach (var titleGenre in title.TitleGenres)
+                {
+                    @titleGenre.Genre.Name
+                    <br />
+                }
+            </td>
+        </tr>
+        <tr>
+            <th>Cast & Crew</th>
+            <td>
+                <table class="table table-condensed table-striped">
+                    <thead>
+                        <tr>
+                            <th>Artist</th>
+                            <th>Role</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var titleArtist in title.TitleArtists.Where(o => o.Role.Name == "Director"))
+                        {
+                            <tr>
+                                <td>
+                                    @Html.ActionLink(
+                                        @titleArtist.Artist.Name,
+                                        nameof(DefaultController.ArtistDetails),
+                                        new { artistId = titleArtist.Artist.Id, mode = Request["mode"] })
+                                </td>
+                                <td>
+                                    @titleArtist.Role.Name
+                                </td>
+                            </tr>
+                        }
+                        @foreach (var titleArtist in title.TitleArtists.Where(o => o.Role.Name == "Actor"))
+                        {
+                            <tr>
+                                <td>
+                                    @Html.ActionLink(
+                                        @titleArtist.Artist.Name,
+                                        nameof(DefaultController.ArtistDetails),
+                                        new { artistId = titleArtist.Artist.Id, mode = Request["mode"] })
+                                </td>
+                                <td>
+                                    @foreach (var titleArtistCharacter in titleArtist.TitleArtistCharacters)
+                                    {
+                                        @Html.ActionLink(
+                                            @titleArtistCharacter.Character.Name,
+                                            nameof(DefaultController.CharacterDetails),
+                                            new { characterId = titleArtistCharacter.Character.Id, mode = Request["mode"] })
+
+                                        <br/>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </tbody>
+</table>

@@ -129,7 +129,7 @@ namespace MovieSite.Database
             if (characterIds.Any())
             {
                 var titleArtistCharacters = _db.TitleArtistCharacters
-                    .Where(o => characterIds.Contains(o.Id))
+                    .Where(o => characterIds.Contains(o.CharacterId))
                     .ToList();
 
                 var titleArtistIds = titleArtistCharacters
@@ -205,7 +205,7 @@ namespace MovieSite.Database
             }
 
             var titles = titlesQuery
-                .OrderBy(o => o.Name)
+                .OrderBy(o => o.Id)
                 .ToList();
 
             titleIds = titles

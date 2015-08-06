@@ -1,4 +1,3 @@
-﻿<h2><a href="@Url.Action(nameof(DefaultController.TitleList))">View Titles</a></h2>
-<h2><a href="@Url.Action(nameof(DefaultController.ArtistList))">View Artists</a></h2>
-<h2><a href="@Url.Action(nameof(DefaultController.CharacterList))">View Characters</a></h2>
-
+﻿<h2>@Html.ActionLink("View Titles", nameof(DefaultController.TitleList), new { mode = Request["mode"] })</h2>
+<h2>@Html.ActionLink("View Artists", nameof(DefaultController.ArtistList), new { mode = Request["mode"] })</h2>
+<h2>@Html.ActionLink("View Characters", nameof(DefaultController.CharacterList), new { mode = Request["mode"] })</h2>

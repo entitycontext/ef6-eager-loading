@@ -1,1 +1,71 @@
 ﻿@model IEnumerable<Artist>
+@{
+    var artists = Model;
+}
+
+@if (artists?.Count() > 0)
+{
+    <table class="table table-striped">
+        <tbody>
+            @foreach (var artist in artists)
+            {
+                <tr>
+                    <td>
+                        @Html.ActionLink(
+                            artist.Name,
+                            nameof(DefaultController.ArtistDetails),
+                            new { artistId = artist.Id, mode = Request["mode"] })
+                    </td>
+                    <td>
+                        <table class="table table-condensed table-bordered">
+                            <thead>
+                                <tr>
+                                    <td style="width: 48px;">Year</td>
+                                    <td style="width: 50%;">Title</td>
+                                    <td>Role</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var titleArtist in artist.TitleArtists.OrderBy(o => o.TitleId))
+                                {
+                                    <tr>
+                                        <td>
+                                            @titleArtist.Title.Year
+                                        </td>
+                                        <td>
+                                            @Html.ActionLink(
+                                                titleArtist.Title.Name,
+                                                nameof(DefaultController.TitleDetails),
+                                                new { titleId = titleArtist.Title.Id, mode = Request["mode"] })
+                                        </td>
+                                        <td>
+                                            @if (titleArtist.TitleArtistCharacters.Any())
+                                            {
+                                                foreach (var titleArtistCharacter in titleArtist.TitleArtistCharacters.OrderBy(o => o.CharacterId))
+                                                {
+                                                    @Html.ActionLink(
+                                                        titleArtistCharacter.Character.Name,
+                                                        nameof(DefaultController.CharacterDetails),
+                                                        new { characterId = titleArtistCharacter.Character.Id, mode = Request["mode"] })
+                                                    <br />
+                                                }
+                                            }
+                                            else
+                                            {
+                                                @titleArtist.Role.Name
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="alert alert-warning">No artists were found.</div>
+}

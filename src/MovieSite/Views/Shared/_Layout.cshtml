@@ -1,5 +1,4 @@
 ﻿<!DOCTYPE html>
-
 <html lang="en">
 <head>
     <title>@ViewBag.Title</title>
@@ -14,10 +13,10 @@
     <div class="navbar navbar-inverse" role="navigation">
         <div class="navbar-header">
             <ul class="nav navbar-nav">
-                <li><a href="@Url.Action(nameof(DefaultController.Index))">Home</a></li>
-                <li><a href="@Url.Action(nameof(DefaultController.TitleList))">Titles</a></li>
-                <li><a href="@Url.Action(nameof(DefaultController.ArtistList))">Artists</a></li>
-                <li><a href="@Url.Action(nameof(DefaultController.CharacterList))">Characters</a></li>                
+                <li>@Html.ActionLink("Home", nameof(DefaultController.Index), new { mode = Request["mode"] })</li>
+                <li>@Html.ActionLink("Titles", nameof(DefaultController.TitleList), new { mode = Request["mode"] })</li>
+                <li>@Html.ActionLink("Artists", nameof(DefaultController.ArtistList), new { mode = Request["mode"] })</li>
+                <li>@Html.ActionLink("Characters", nameof(DefaultController.CharacterList), new { mode = Request["mode"] })</li>
             </ul>
         </div>
     </div>

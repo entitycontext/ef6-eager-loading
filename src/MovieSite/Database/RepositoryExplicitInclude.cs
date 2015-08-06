@@ -101,7 +101,7 @@ namespace MovieSite.Database
                 .Include(o => o.TitleArtists.Select(p => p.Role))
                 .Include(o => o.TitleArtists.Select(p => p.TitleArtistCharacters.Select(q => q.Character)))
                 .Include(o => o.TitleGenres.Select(p => p.Genre))
-                .OrderBy(o => o.Name)
+                .OrderBy(o => o.Id)
                 .ToList();
 
             return titles;

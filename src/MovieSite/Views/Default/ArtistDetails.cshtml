@@ -1,1 +1,47 @@
 ﻿@model Artist
+@{
+    var artist = Model;
+}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th style="width: 48px;">Year</th>
+            <th style="width: 50%;">Title</th>
+            <th>Role</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var titleArtist in artist.TitleArtists.OrderBy(o => o.TitleId))
+        {
+            <tr>
+                <td>
+                    @titleArtist.Title.Year
+                </td>
+                <td>
+                    @Html.ActionLink(
+                        titleArtist.Title.Name,
+                        nameof(DefaultController.TitleDetails),
+                        new { titleId = titleArtist.Title.Id, mode = Request["mode"] })
+                </td>
+                <td>
+                    @if (titleArtist.TitleArtistCharacters.Any())
+                    {
+                        foreach (var titleArtistCharacter in titleArtist.TitleArtistCharacters.OrderBy(o => o.CharacterId))
+                        {
+                            @Html.ActionLink(
+                                titleArtistCharacter.Character.Name,
+                                nameof(DefaultController.CharacterDetails),
+                                new { characterId = titleArtistCharacter.Character.Id, mode = Request["mode"] })
+                            <br />
+                        }
+                    }
+                    else
+                    {
+                        @titleArtist.Role.Name
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

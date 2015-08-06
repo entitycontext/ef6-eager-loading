@@ -1,1 +1,85 @@
 ﻿@model IEnumerable<Title>
+@{ 
+    var titles = Model;
+}
+
+@if (titles?.Count() > 0)
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Year</th>
+                <th>Name</th>
+                <th>Genre</th>
+                <th>Director</th>
+                <th>Cast</th>
+                <th>Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var title in titles)
+            {                
+                <tr>
+                    <td>
+                        @title.Year
+                    </td>
+                    <td>
+                        @Html.ActionLink(
+                            @title.Name,
+                            nameof(DefaultController.TitleDetails),
+                            new { titleId = title.Id, mode = Request["mode"] })
+                    </td>
+                    <td>
+                        @foreach (var titleGenre in title.TitleGenres)
+                        {
+                            @titleGenre.Genre.Name
+                            <br />
+                        }
+                    </td>
+                    <td>
+                        @foreach (var titleArtist in title.TitleArtists.Where(o => o.Role.Name == "Director"))
+                        {
+                            @Html.ActionLink(
+                                @titleArtist.Artist.Name,
+                                nameof(DefaultController.ArtistDetails),
+                                new { artistId = titleArtist.Artist.Id, mode = Request["mode"] })
+                            <br />
+                        }
+                    </td>
+                    <td>
+                        @foreach (var titleArtist in title.TitleArtists.Where(o => o.Role.Name == "Actor"))
+                        {
+                            @Html.ActionLink(
+                                @titleArtist.Artist.Name,
+                                nameof(DefaultController.ArtistDetails),
+                                new { artistId = titleArtist.Artist.Id, mode = Request["mode"] })
+                            <br />
+                        }
+                    </td>
+                    <td>
+                        <table class="table table-bordered" style="text-align: right;">
+                            <tbody>
+                                <tr>
+                                    <td>Runtime</td>
+                                    <td>@title.RuntimeMinutes minutes</td>
+                                </tr>
+                                <tr>
+                                    <td>Budget</td>
+                                    <td>@title.BudgetMillions.ToString("c") million</td>
+                                </tr>
+                                <tr>
+                                    <td>Gross</td>
+                                    <td>@title.GrossMillions.ToString("c") million</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="alert alert-warning">No titles were found.</div>
+}

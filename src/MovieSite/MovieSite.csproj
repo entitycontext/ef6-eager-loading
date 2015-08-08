@@ -118,6 +118,7 @@
     <Compile Include="Database\RepositoryBase.cs" />
     <Compile Include="Database\RepositoryExplicitInclude.cs" />
     <Compile Include="Database\RepositoryExplicitManual.cs" />
+    <Compile Include="Database\RepositoryLazy.cs" />
     <Compile Include="Database\SampleData.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

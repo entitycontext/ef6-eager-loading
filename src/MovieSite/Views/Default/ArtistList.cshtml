@@ -3,7 +3,7 @@
     var artists = Model;
 }
 
-@if (artists?.Count() > 0)
+@if (artists?.Any() == true)
 {
     <table class="table table-striped">
         <tbody>

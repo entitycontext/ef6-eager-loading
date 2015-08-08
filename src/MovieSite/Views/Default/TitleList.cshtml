@@ -3,7 +3,7 @@
     var titles = Model;
 }
 
-@if (titles?.Count() > 0)
+@if (titles?.Any() == true)
 {
     <table class="table table-striped">
         <thead>

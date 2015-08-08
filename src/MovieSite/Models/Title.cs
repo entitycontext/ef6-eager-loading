@@ -11,7 +11,7 @@ namespace MovieSite.Models
         public decimal BudgetMillions { get; set; }
         public decimal GrossMillions { get; set; }
 
-        public ICollection<TitleGenre> TitleGenres { get; set; } = new List<TitleGenre>();
-        public ICollection<TitleArtist> TitleArtists { get; set; } = new List<TitleArtist>();
+        public virtual ICollection<TitleGenre> TitleGenres { get; set; } = new List<TitleGenre>();
+        public virtual ICollection<TitleArtist> TitleArtists { get; set; } = new List<TitleArtist>();
     }
 }

@@ -6,6 +6,6 @@ namespace MovieSite.Models
     {
         public string Name { get; set; }
 
-        public ICollection<TitleArtist> TitleArtists { get; set; } = new List<TitleArtist>();
+        public virtual ICollection<TitleArtist> TitleArtists { get; set; } = new List<TitleArtist>();
     }
 }

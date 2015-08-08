@@ -3,7 +3,7 @@
     var characters = Model;
 }
 
-@if (characters?.Count() > 0)
+@if (characters?.Any() == true)
 {
     <table class="table table-striped">
         <thead>

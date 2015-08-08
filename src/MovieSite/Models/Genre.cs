@@ -6,6 +6,6 @@ namespace MovieSite.Models
     {
         public string Name { get; set; }
 
-        public ICollection<TitleGenre> TitleGenres { get; set; } = new List<TitleGenre>();
+        public virtual ICollection<TitleGenre> TitleGenres { get; set; } = new List<TitleGenre>();
     }
 }

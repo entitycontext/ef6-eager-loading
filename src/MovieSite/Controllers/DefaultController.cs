@@ -1,15 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Web.Mvc;
 
 using MovieSite.Database;
-using MovieSite.Models;
 
 namespace MovieSite.Controllers
 {
     public class DefaultController : Controller
     {
         public const string MODE_INCLUDE = "include";
+        public const string MODE_LAZY = "lazy";
         public const string MODE_MANUAL = "manual";
 
         private IRepository _repo;
@@ -25,11 +24,20 @@ namespace MovieSite.Controllers
                         _repo = new RepositoryExplicitInclude(db);
                         break;
 
+                    case MODE_LAZY:
+                        _repo = new RepositoryLazy(db);
+                        break;
+
                     case MODE_MANUAL:
                     default:
                         _repo = new RepositoryExplicitManual(db);
                         break;
                 }
+
+                //
+                // NOTE: We're adding the repo to the HTTP context so we can dispose of it from Application_EndRequest.
+                //
+                HttpContext.Items["repo"] = _repo;
             }
             return _repo;
         }
@@ -45,16 +53,12 @@ namespace MovieSite.Controllers
         public ActionResult ArtistDetails(
             long artistId)
         {
-            var artist = (Artist)null;
-            using (var repo = GetRepo())
-            {
-                artist = repo.GetArtist(artistId);
-            }
+            var repo = GetRepo();
+            var artist = repo?.GetArtist(artistId);
             if (artist == null)
             {
                 throw new Exception($"No artist with id #{artistId} found.");
             }
-
             ViewBag.Title = $"{artist.Name} Artist Details";
             return View(artist);
         }
@@ -62,12 +66,8 @@ namespace MovieSite.Controllers
         [Route("artists")]
         public ActionResult ArtistList()
         {
-            var artists = (IEnumerable<Artist>)null;
-            using (var repo = GetRepo())
-            {
-                artists = repo.GetArtists();
-            }
-
+            var repo = GetRepo();
+            var artists = repo?.GetArtists();
             ViewBag.Title = "Artist List";
             return View(artists);
         }
@@ -76,16 +76,12 @@ namespace MovieSite.Controllers
         public ActionResult CharacterDetails(
             long characterId)
         {
-            var character = (Character)null;
-            using (var repo = GetRepo())
-            {
-                character = repo.GetCharacter(characterId);
-            }
+            var repo = GetRepo();
+            var character = repo?.GetCharacter(characterId);
             if (character == null)
             {
                 throw new Exception($"No character with id #{characterId} found.");
             }
-
             ViewBag.Title = $"{character.Name} Character Details";
             return View(character);
         }
@@ -93,12 +89,8 @@ namespace MovieSite.Controllers
         [Route("characters")]
         public ActionResult CharacterList()
         {
-            var characters = (IEnumerable<Character>)null;
-            using (var repo = GetRepo())
-            {
-                characters = repo.GetCharacters();
-            }
-
+            var repo = GetRepo();
+            var characters = repo?.GetCharacters();
             ViewBag.Title = "Character List";
             return View(characters);
         }
@@ -107,16 +99,12 @@ namespace MovieSite.Controllers
         public ActionResult TitleDetails(
             long titleId)
         {
-            var title = (Title)null;
-            using (var repo = GetRepo())
-            {
-                title = repo.GetTitle(titleId);
-            }
+            var repo = GetRepo();
+            var title = repo?.GetTitle(titleId);
             if (title == null)
             {
                 throw new Exception($"No title with id #{titleId} found.");
             }
-
             ViewBag.Title = $"{title.Name} Title Details";
             return View(title);
         }
@@ -124,12 +112,8 @@ namespace MovieSite.Controllers
         [Route("titles")]
         public ActionResult TitleList()
         {
-            var titles = (IEnumerable<Title>)null;
-            using (var repo = GetRepo())
-            {
-                titles = repo.GetTitles();
-            }
-
+            var repo = GetRepo();
+            var titles = repo?.GetTitles();
             ViewBag.Title = "Title List";
             return View(titles);
         }

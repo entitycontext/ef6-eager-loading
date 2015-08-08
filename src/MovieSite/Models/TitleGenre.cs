@@ -5,7 +5,7 @@
         public long TitleId { get; set; }
         public long GenreId { get; set; }
 
-        public Title Title { get; set; }
-        public Genre Genre { get; set; }
+        public virtual Title Title { get; set; }
+        public virtual Genre Genre { get; set; }
     }
 }

@@ -5,7 +5,6 @@ namespace MovieSite.Models
     public class Title : Entity
     {
         public string Name { get; set; }
-        public string SortName { get; set; }
         public int Year { get; set; }
         public int RuntimeMinutes { get; set; }
         public decimal BudgetMillions { get; set; }

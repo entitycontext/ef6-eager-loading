@@ -16,7 +16,6 @@ namespace MovieSite.Database
         {
             Titles["Iron Man"] = new Title
             {
-                SortName = "iron man 1",
                 Year = 2008,
                 RuntimeMinutes = 126,
                 BudgetMillions = 140.0m,
@@ -148,7 +147,6 @@ namespace MovieSite.Database
 
             Titles["The Incredible Hulk"] = new Title
             {
-                SortName = "incredible hulk",
                 Year = 2008,
                 RuntimeMinutes = 112,
                 BudgetMillions = 150.0m,
@@ -244,7 +242,6 @@ namespace MovieSite.Database
 
             Titles["Iron Man 2"] = new Title
             {
-                SortName = "iron man 2",
                 Year = 2010,
                 RuntimeMinutes = 125,
                 BudgetMillions = 200.0m,
@@ -395,7 +392,6 @@ namespace MovieSite.Database
 
             Titles["Thor"] = new Title
             {
-                SortName = "thor 1",
                 Year = 2011,
                 RuntimeMinutes = 114,
                 BudgetMillions = 150.0m,
@@ -544,7 +540,6 @@ namespace MovieSite.Database
 
             Titles["Captain America: The First Avenger"] = new Title
             {
-                SortName = "captain america 1",
                 Year = 2011,
                 RuntimeMinutes = 124,
                 BudgetMillions = 140.0m,
@@ -695,7 +690,6 @@ namespace MovieSite.Database
 
             Titles["The Avengers"] = new Title
             {
-                SortName = "avengers 1",
                 Year = 2012,
                 RuntimeMinutes = 143,
                 BudgetMillions = 220.0m,
@@ -840,7 +834,6 @@ namespace MovieSite.Database
 
             Titles["Iron Man 3"] = new Title
             {
-                SortName = "iron man 3",
                 Year = 2013,
                 RuntimeMinutes = 130,
                 BudgetMillions = 200.0m,
@@ -999,7 +992,6 @@ namespace MovieSite.Database
 
             Titles["Thor: The Dark World"] = new Title
             {
-                SortName = "thor 2",
                 Year = 2013,
                 RuntimeMinutes = 112,
                 BudgetMillions = 170.0m,
@@ -1158,7 +1150,6 @@ namespace MovieSite.Database
 
             Titles["Captain America: The Winter Soldier"] = new Title
             {
-                SortName = "captain america 2",
                 Year = 2014,
                 RuntimeMinutes = 136,
                 BudgetMillions = 170.0m,
@@ -1316,7 +1307,6 @@ namespace MovieSite.Database
 
             Titles["Avengers: Age of Ultron"] = new Title
             {
-                SortName = "avengers 2",
                 Year = 2015,
                 RuntimeMinutes = 141,
                 BudgetMillions = 279.9m,

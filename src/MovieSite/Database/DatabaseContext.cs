@@ -107,9 +107,6 @@ namespace MovieSite.Database
             title.Property(o => o.Name)
                 .HasMaxLength(255);
 
-            title.Property(o => o.SortName)
-                .HasMaxLength(255);
-
             title.Property(o => o.Year);
 
             title.Property(o => o.RuntimeMinutes);

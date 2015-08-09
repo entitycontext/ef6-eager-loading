@@ -52,6 +52,7 @@ namespace MovieSite.Database
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
 
             artist.Property(o => o.Name)
+                .IsRequired()
                 .HasMaxLength(255);
 
             //
@@ -61,10 +62,11 @@ namespace MovieSite.Database
             var character = modelBuilder.Entity<Character>()
                 .HasKey(o => o.Id);
 
-            artist.Property(o => o.Id)
+            character.Property(o => o.Id)
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
 
             character.Property(o => o.Name)
+                .IsRequired()
                 .HasMaxLength(255);
 
 
@@ -75,10 +77,11 @@ namespace MovieSite.Database
             var genre = modelBuilder.Entity<Genre>()
                 .HasKey(o => o.Id);
 
-            artist.Property(o => o.Id)
+            genre.Property(o => o.Id)
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
 
             genre.Property(o => o.Name)
+                .IsRequired()
                 .HasMaxLength(255);
 
             //
@@ -92,6 +95,7 @@ namespace MovieSite.Database
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
 
             role.Property(o => o.Name)
+                .IsRequired()
                 .HasMaxLength(255);
 
             //
@@ -105,6 +109,7 @@ namespace MovieSite.Database
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
 
             title.Property(o => o.Name)
+                .IsRequired()
                 .HasMaxLength(255);
 
             title.Property(o => o.Year);

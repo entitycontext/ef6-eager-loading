@@ -56,6 +56,11 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -114,6 +119,8 @@
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Database\DatabaseContext.cs" />
     <Compile Include="Database\DatabaseInitializer.cs" />
+    <Compile Include="Database\EntityCache.cs" />
+    <Compile Include="Database\RepositoryEntityCache.cs" />
     <Compile Include="Database\StoredProcedures.cs" />
     <Compile Include="Database\IRepository.cs" />
     <Compile Include="Database\RepositoryBase.cs" />

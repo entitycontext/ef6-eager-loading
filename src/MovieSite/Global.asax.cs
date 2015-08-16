@@ -15,6 +15,8 @@ namespace MovieSite
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
             EndRequest += Application_EndRequest;
+
+            EntityCache.Refresh();
         }
 
         private void Application_EndRequest(

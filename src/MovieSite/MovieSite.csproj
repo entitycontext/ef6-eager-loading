@@ -114,7 +114,7 @@
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Database\DatabaseContext.cs" />
     <Compile Include="Database\DatabaseInitializer.cs" />
-    <Compile Include="Database\DatabaseStoredProcedures.cs" />
+    <Compile Include="Database\StoredProcedures.cs" />
     <Compile Include="Database\IRepository.cs" />
     <Compile Include="Database\RepositoryBase.cs" />
     <Compile Include="Database\RepositoryExplicitInclude.cs" />

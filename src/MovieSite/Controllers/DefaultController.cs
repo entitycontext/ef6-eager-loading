@@ -10,6 +10,7 @@ namespace MovieSite.Controllers
         public const string MODE_INCLUDE = "include";
         public const string MODE_LAZY = "lazy";
         public const string MODE_MANUAL = "manual";
+        public const string MODE_SPROC = "sproc";
 
         private IRepository _repo;
         private IRepository GetRepo()
@@ -26,6 +27,10 @@ namespace MovieSite.Controllers
 
                     case MODE_LAZY:
                         _repo = new RepositoryLazy(db);
+                        break;
+
+                    case MODE_SPROC:
+                        _repo = new RepositoryStoredProcedures(db);
                         break;
 
                     case MODE_MANUAL:

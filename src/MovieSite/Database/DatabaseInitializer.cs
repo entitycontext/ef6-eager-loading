@@ -7,7 +7,7 @@ namespace MovieSite.Database
         protected override void Seed(
             DatabaseContext db)
         {
-            DatabaseStoredProcedures.Generate(db);
+            StoredProcedures.Generate(db);
 
             var data = new SampleData();
 
